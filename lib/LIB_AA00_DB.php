@@ -3,11 +3,11 @@
 $DIRECTORY_LOG = $DIRECTORY_HOME . DIRECTORY_SEPARATOR . "log";
 
 // GLOBAL CONFIG OF DATABASE 1
-$DBHOST_1	= " "; //DB Host
-$DBUSER_1	= " "; //DB Username
-$DBPASS_1	= " "; //DB Password 
-$DBNAME_1	= " "; //DB Table
-$G_DBCONN_1	= mysqli_connect($DBHOST_MAIN,$DBUSER_MAIN,$DBPASS_MAIN,$DBNAME_MAIN);     
+$DBHOST_MAIN	= "localhost"; //DB Host
+$DBUSER_MAIN	= "root"; //DB Username
+$DBPASS_MAIN	= ""; //DB Password 
+$DBNAME_MAIN	= ""; //DB Name
+$G_DBCONN_MAIN	= mysqli_connect($DBHOST_MAIN,$DBUSER_MAIN,$DBPASS_MAIN,$DBNAME_MAIN);     
    
 $G_TABLENAME_1		= "user_table"; //Sample table name
 $G_TABLENAME_2		= "transaction";
@@ -29,7 +29,7 @@ $FILE_LOCKER = array (
         "NAME"          => $DIRECTORY_LOG . DIRECTORY_SEPARATOR . "PROCESS.lock",
         "FILTER"        => array (
                 "COMMAND"       => "/usr/bin/php",
-                "PARAMETER"     => $DIRECTORY_MAIN . "bin/RUN.php"
+                "PARAMETER"     => $DIRECTORY_HOME . DIRECTORY_SEPARATOR . "bin". DIRECTORY_SEPARATOR . "RUN.php"
         ),
         "EXPIRED"       => 60
 );
@@ -38,4 +38,14 @@ function LIB_AA00_DB_main() {
 	//do nothing
 }
 
+//Unlock File
+public function AA00_UNLOCKFILE() 
+{
+   global $FILE_LOCKER;
+
+   if (file_exists($FILE_LOCKER["NAME"])) 
+   {
+      unlink($FILE_LOCKER["NAME"]);
+   }
+}
 ?>

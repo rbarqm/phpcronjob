@@ -1,0 +1,2 @@
+This folder used for storing file like .CSV, .XLS, etc. 
+Which may be used to upload data via file.

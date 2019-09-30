@@ -1,0 +1,3 @@
+This directory used for storing the log of your process. The log is from your echo result.
+example :
+0 * * * * /usr/bin/php /home/your/directory/bin/RUN.php>>/home/your/directory/log/task.log
